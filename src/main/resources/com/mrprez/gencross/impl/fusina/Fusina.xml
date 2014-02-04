@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personnage name="Fusina" version="1.0" gencrossVersion="1.10"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="http://mrprez.dyndns.org:8080/gencross-web/gencross-plugin.xsd">
+	<phase name="Héroïsme"/>
+	<phaseList>
+		<phase name="Héroïsme"/>
+		<phase name="Création"/>
+		<phase name="Jeu"/>
+	</phaseList>
+	<pointPools>
+		<pool name="Traits" remaining="3" total="3" toEmpty="false"/>
+		<pool name="Compétences" remaining="25" total="25" toEmpty="false"/>
+		<pool name="Evolution" remaining="0" total="0" toEmpty="false"/>
+	</pointPools>
+	<properties>
+		<property name="Nom" editable="true" canBeRemoved="false">
+			<Value class="com.mrprez.gencross.value.StringValue"></Value>
+		</property>
+		<property name="Héroïsme" editable="true" canBeRemoved="false">
+			<Value class="com.mrprez.gencross.value.IntValue">0</Value>
+			<min>
+				<Value class="com.mrprez.gencross.value.IntValue">0</Value>
+			</min>
+		</property>
+		<property name="Traits" editable="false" canBeRemoved="false">
+			<propertiesList fixe="false" open="true">
+				<defaultProperty>
+					<property name="" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.StringValue">Physique</Value>
+						<valueChoice>
+							<Value class="com.mrprez.gencross.value.StringValue">Physique</Value>
+							<Value class="com.mrprez.gencross.value.StringValue">Intellect</Value>
+							<Value class="com.mrprez.gencross.value.StringValue">Social</Value>
+							<Value class="com.mrprez.gencross.value.StringValue">Ame</Value>
+							<Value class="com.mrprez.gencross.value.StringValue">Influence</Value>
+						</valueChoice>
+					</property>
+				</defaultProperty>
+				<properties/>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+				<pointPool>Traits</pointPool>
+				<args>
+					<arg key="cost">1</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Faiblesses" editable="false" canBeRemoved="false">
+			<propertiesList fixe="false" open="true">
+				<defaultProperty>
+					<property name="" editable="false" canBeRemoved="true"/>
+				</defaultProperty>
+				<properties/>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+				<pointPool>Traits</pointPool>
+				<args>
+					<arg key="cost">-1</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Caractéristiques" editable="false" canBeRemoved="false">
+			<propertiesList fixe="true" open="false">
+				<properties>
+					<property name="Physique" editable="false">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+					<property name="Intellect" editable="false">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+					<property name="Social" editable="false">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+					<property name="Ame" editable="false">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+					<property name="Influence" editable="false">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+				</properties>
+			</propertiesList>
+		</property>
+		<property name="Compétences" editable="false" canBeRemoved="false">
+			<propertiesList fixe="false" open="true">
+				<properties></properties>
+				<defaultProperty>
+					<property name="" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">6</Value>
+						</max>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+				</defaultProperty>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+				<pointPool>Compétences</pointPool>
+				<args>
+					<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+					<arg key="2">1</arg>
+					<arg key="3">3</arg>
+					<arg key="4">6</arg>
+					<arg key="5">10</arg>
+					<arg key="6">15</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Equipement" editable="false" canBeRemoved="false">
+			<propertiesList fixe="false" open="true">
+				<properties></properties>
+				<defaultProperty>
+					<property name="" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue">0</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="2">0
+							</Value>
+						</min>
+						<renderer class="com.mrprez.gencross.impl.fusina.FusinaRenderer"/>
+					</property>
+				</defaultProperty>
+			</propertiesList>
+		</property>
+	</properties>
+	<beforeChangeValueListeners/>
+	<afterChangeValueListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomAfterChangeValueListener">
+			<pattern>Traits#[^#]*</pattern>
+			<arg name="method">changeTrait</arg>
+		</listener>
+	</afterChangeValueListeners>
+	<beforeAddPropertyListeners/>
+	<afterAddPropertyListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomAfterAddPropertyListener">
+			<pattern>Traits#[^#]*</pattern>
+			<arg name="method">addTrait</arg>
+		</listener>
+	</afterAddPropertyListeners>
+	<beforeDeletePropertyListeners/>
+	<afterDeletePropertyListeners/>
+	<passToNextPhaseListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Héroïsme</phase>
+			<arg name="method">endHeroismePhase</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Création</phase>
+			<arg name="method">endCreationPhase</arg>
+		</listener>
+	</passToNextPhaseListeners>
+	<formulas/>
+	<history/>
+</personnage>
